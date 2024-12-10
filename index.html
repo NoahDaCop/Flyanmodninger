@@ -166,19 +166,65 @@
     <!-- Flyformular -->
     <form id="flightForm" class="hidden">
       <h2>Flyreservation</h2>
-      <!-- Formularfelter for fly -->
+      <div class="form-group">
+        <label for="flightName">Navn</label>
+        <input type="text" id="flightName" name="flightName" placeholder="Indtast dit navn" required>
+      </div>
+      <div class="form-group">
+        <label for="flightDate">Rejsedato</label>
+        <input type="date" id="flightDate" name="flightDate" required>
+      </div>
+      <div class="form-group">
+        <label for="flightPassengers">Antal passagerer</label>
+        <input type="number" id="flightPassengers" name="flightPassengers" min="1" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Book Fly</button>
+      </div>
     </form>
 
     <!-- Bilformular -->
     <form id="carForm" class="hidden">
       <h2>Bilreservation</h2>
-      <!-- Formularfelter for bil -->
+      <div class="form-group">
+        <label for="carName">Navn</label>
+        <input type="text" id="carName" name="carName" placeholder="Indtast dit navn" required>
+      </div>
+      <div class="form-group">
+        <label for="carPickup">Afhentningssted</label>
+        <input type="text" id="carPickup" name="carPickup" placeholder="Indtast afhentningssted" required>
+      </div>
+      <div class="form-group">
+        <label for="carDate">Afhentningsdato</label>
+        <input type="date" id="carDate" name="carDate" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Book Bil</button>
+      </div>
     </form>
 
     <!-- Helikopterformular -->
     <form id="helicopterForm" class="hidden">
       <h2>Helikopterreservation</h2>
-      <!-- Formularfelter for helikopter -->
+      <div class="form-group">
+        <label for="helicopterName">Navn</label>
+        <input type="text" id="helicopterName" name="helicopterName" placeholder="Indtast dit navn" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterDestination">Destination</label>
+        <input type="text" id="helicopterDestination" name="helicopterDestination" placeholder="Indtast destination" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterDate">Flyvedato</label>
+        <input type="date" id="helicopterDate" name="helicopterDate" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterPassengers">Antal passagerer</label>
+        <input type="number" id="helicopterPassengers" name="helicopterPassengers" min="1" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Book Helikopter</button>
+      </div>
     </form>
 
     <!-- Prisoversigt -->
