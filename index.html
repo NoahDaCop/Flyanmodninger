@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privat Flyanmodning</title>
+  <title>Transportanmodning</title>
   <style>
-    /* General Styles */
+    /* Generel styling */
     body {
       font-family: Arial, sans-serif;
       background-color: #f3f4f6;
@@ -17,58 +17,75 @@
       min-height: 100vh;
     }
 
-    .form-container {
+    .container {
       background: white;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      max-width: 400px;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
       width: 100%;
+      text-align: center;
     }
 
-    .form-container h2 {
-      text-align: center;
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
       color: #333;
-      margin-bottom: 25px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+
+    .buttons button {
+      padding: 20px 30px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #45a049;
+      transform: scale(1.1);
     }
 
     .form-group {
       margin-bottom: 20px;
+      text-align: left;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-weight: bold;
       color: #555;
     }
 
-    .form-group select,
     .form-group input,
+    .form-group select,
     .form-group button {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .form-group select:focus,
-    .form-group input:focus {
-      border-color: #4CAF50;
-      outline: none;
-    }
-
-    .form-group input[type="checkbox"] {
-      width: auto;
-      margin-right: 8px;
+      font-size: 16px;
     }
 
     .form-group button {
       background-color: #4CAF50;
       color: white;
       font-weight: bold;
-      border: none;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -77,23 +94,35 @@
       background-color: #45a049;
     }
 
-    @media (max-width: 480px) {
-      .form-container {
-        padding: 15px 20px;
-      }
+    .info {
+      font-size: 14px;
+      color: #555;
+      margin-top: 20px;
+    }
 
-      .form-group label,
-      .form-group select,
-      .form-group input {
-        font-size: 13px;
-      }
+    .small-text {
+      font-size: 12px;
+      color: #999;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Anmodning om Privat Fly</h2>
-    <form id="requestForm">
+  <div class="container">
+    <h1>Vælg din transportmetode</h1>
+    <div id="transportSelection" class="buttons">
+      <button id="chooseFlight">Fly</button>
+      <button id="chooseCar">Bil</button>
+      <button id="chooseHelicopter">Helikopter</button>
+    </div>
+
+    <!-- Flyformular -->
+    <form id="flightForm" class="hidden">
+      <h2>Flyreservation</h2>
+      <div class="form-group">
+        <label for="flightName">Dit Navn:</label>
+        <input type="text" id="flightName" placeholder="Indtast dit navn" required>
+      </div>
       <div class="form-group">
         <label for="fromAirport">Fra Lufthavn:</label>
         <select id="fromAirport" required>
@@ -104,7 +133,6 @@
           <option value="Grapeseed Airport">Grapeseed Airport</option>
         </select>
       </div>
-
       <div class="form-group">
         <label for="toAirport">Til Lufthavn:</label>
         <select id="toAirport" required>
@@ -115,114 +143,231 @@
           <option value="Grapeseed Airport">Grapeseed Airport</option>
         </select>
       </div>
-
       <div class="form-group">
-        <label for="passengers">Antal Passagerer:</label>
-        <input type="number" id="passengers" min="1" placeholder="Indtast antal passagerer" required>
+        <label for="flightDate">Dato:</label>
+        <input type="date" id="flightDate" required>
       </div>
-
       <div class="form-group">
-        <label for="name">Dit Navn:</label>
-        <input type="text" id="name" placeholder="Indtast dit navn" required>
+        <label for="flightTime">Tid:</label>
+        <input type="time" id="flightTime" required>
       </div>
-
       <div class="form-group">
-        <label for="phone">Telefonnummer:</label>
-        <input type="tel" id="phone" placeholder="Indtast dit telefonnummer" required>
+        <label for="flightPassengers">Antal Passagerer:</label>
+        <input type="number" id="flightPassengers" min="1" placeholder="Indtast antal passagerer" required>
       </div>
-
       <div class="form-group">
-        <label for="discord">Discord-brugernavn:</label>
-        <input type="text" id="discord" placeholder="Indtast dit Discord-brugernavn (f.eks. Bruger#1234)" required>
+        <label for="flightPhone">Telefonnummer:</label>
+        <input type="tel" id="flightPhone" placeholder="Indtast dit telefonnummer" required>
       </div>
-
       <div class="form-group">
-        <label for="date">Dato:</label>
-        <input type="date" id="date" required>
+        <label for="flightDiscord">Discord-brugernavn:</label>
+        <input type="text" id="flightDiscord" placeholder="Indtast dit Discord-brugernavn (f.eks. Bruger#1234)" required>
       </div>
-
-      <div class="form-group">
-        <label for="time">Tid:</label>
-        <input type="time" id="time" required>
-      </div>
-
-      <div class="form-group">
-        <label>
-          <input type="checkbox" id="transit"> Har brug for transport til/fra lufthavnen
-        </label>
-      </div>
-
       <div class="form-group">
         <button type="submit">Anmod om Fly</button>
       </div>
     </form>
+
+    <!-- Bilformular -->
+    <form id="carForm" class="hidden">
+      <h2>Bilreservation</h2>
+      <div class="form-group">
+        <label for="carName">Dit Navn:</label>
+        <input type="text" id="carName" placeholder="Indtast dit navn" required>
+      </div>
+      <div class="form-group">
+        <label for="carPickup">Afhentningssted:</label>
+        <input type="text" id="carPickup" placeholder="Indtast afhentningssted" required>
+      </div>
+      <div class="form-group">
+        <label for="carDropoff">Afleveringssted:</label>
+        <input type="text" id="carDropoff" placeholder="Indtast afleveringssted" required>
+      </div>
+      <div class="form-group">
+        <label for="carPassengers">Antal personer:</label>
+        <input type="number" id="carPassengers" min="1" placeholder="Indtast antal personer" required>
+      </div>
+      <div class="form-group">
+        <label for="carType">Biltype:</label>
+        <select id="carType" required>
+          <option value="" disabled selected>Vælg biltype</option>
+          <option value="SUV">SUV</option>
+          <option value="Sport">Sport</option>
+          <option value="Limousine">Limousine</option>
+          <option value="Sedan">Sedan</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="carDate">Dato:</label>
+        <input type="date" id="carDate" required>
+      </div>
+      <div class="form-group">
+        <label for="carTime">Tid:</label>
+        <input type="time" id="carTime" required>
+      </div>
+      <div class="form-group">
+        <label for="carPhone">Telefonnummer:</label>
+        <input type="tel" id="carPhone" placeholder="Indtast dit telefonnummer" required>
+      </div>
+      <div class="form-group">
+        <label for="carDiscord">Discord-brugernavn:</label>
+        <input type="text" id="carDiscord" placeholder="Indtast dit Discord-brugernavn (f.eks. Bruger#1234)" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Anmod om Bil</button>
+      </div>
+    </form>
+
+    <!-- Helikopterformular -->
+    <form id="helicopterForm" class="hidden">
+      <h2>Helikopterreservation</h2>
+      <div class="form-group">
+        <label for="helicopterName">Dit Navn:</label>
+        <input type="text" id="helicopterName" placeholder="Indtast dit navn" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterPickup">Afhentningssted:</label>
+        <input type="text" id="helicopterPickup" placeholder="Indtast afhentningssted" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterDropoff">Afleveringssted:</label>
+        <input type="text" id="helicopterDropoff" placeholder="Indtast afleveringssted" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterPassengers">Antal personer:</label>
+        <input type="number" id="helicopterPassengers" min="1" placeholder="Indtast antal personer" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterDate">Dato:</label>
+        <input type="date" id="helicopterDate" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterTime">Tid:</label>
+        <input type="time" id="helicopterTime" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterPhone">Telefonnummer:</label>
+        <input type="tel" id="helicopterPhone" placeholder="Indtast dit telefonnummer" required>
+      </div>
+      <div class="form-group">
+        <label for="helicopterDiscord">Discord-brugernavn:</label>
+        <input type="text" id="helicopterDiscord" placeholder="Indtast dit Discord-brugernavn (f.eks. Bruger#1234)" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Anmod om Helikopter</button>
+      </div>
+    </form>
+
+    <!-- Info-sektion -->
+    <div class="info">
+      <p>🚗 Hvis du skal have transit, skal du booke en bilbooking.</p>
+      <p class="small-text">* Din tur er først bekræftet, når vi har ringet til dig.</p>
+    </div>
   </div>
 
   <script>
     const webhookURL = "https://discord.com/api/webhooks/1313854446253637733/hYilUVqmpBzZZnvF4g-VoEiwZiAXck0fwCop2HqBDEs0CBiQOoI5ScAkLDV5P1yQldLn";
+    const transportSelection = document.getElementById("transportSelection");
+    const forms = {
+      flight: document.getElementById("flightForm"),
+      car: document.getElementById("carForm"),
+      helicopter: document.getElementById("helicopterForm"),
+    };
 
-    document.getElementById("requestForm").addEventListener("submit", async (event) => {
-      event.preventDefault();
+    // Funktion til at vise én formular ad gangen
+    function showForm(formKey) {
+      Object.keys(forms).forEach((key) => forms[key].classList.add("hidden"));
+      forms[formKey].classList.remove("hidden");
+      transportSelection.classList.add("hidden");
+    }
 
-      const fromAirport = document.getElementById("fromAirport").value;
-      const toAirport = document.getElementById("toAirport").value;
-      const passengers = document.getElementById("passengers").value;
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const discord = document.getElementById("discord").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
-      const transit = document.getElementById("transit").checked;
+    // Event Listeners til valg af transportmetode
+    document.getElementById("chooseFlight").addEventListener("click", () => showForm("flight"));
+    document.getElementById("chooseCar").addEventListener("click", () => showForm("car"));
+    document.getElementById("chooseHelicopter").addEventListener("click", () => showForm("helicopter"));
 
-      // Check for the same airport
-      if (fromAirport === toAirport) {
-        alert("Du kan ikke vælge den samme lufthavn for både afgang og destination. Vælg venligst forskellige lufthavne.");
-        return;
-      }
-
-      // Prepare transit message
-      const transitMessage = transit ? "Ja, transport til/fra lufthavnen er nødvendigt." : "Nej, transport ikke nødvendig.";
-
-      // Create embed message for Discord
-      const message = {
-        content: null,
-        embeds: [
-          {
-            title: "✈️ **Anmodning om Privat Fly**",
-            color: 5814783,
-            fields: [
-              { name: "📍 **Fra Lufthavn**", value: fromAirport, inline: true },
-              { name: "📍 **Til Lufthavn**", value: toAirport, inline: true },
-              { name: "👥 **Antal Passagerer**", value: passengers, inline: true },
-              { name: "📞 **Telefonnummer**", value: phone, inline: true },
-              { name: "💬 **Discord**", value: discord, inline: true },
-              { name: "📅 **Dato**", value: date, inline: true },
-              { name: "⏰ **Tid**", value: time, inline: true },
-              { name: "🚗 **Transport**", value: transitMessage, inline: false },
-            ],
-            footer: { text: `Anmodet af ${name}` },
-            timestamp: new Date().toISOString(),
-          },
-        ],
-      };
-
+    // Funktion til at sende data til Discord webhook
+    async function sendToDiscord(embed) {
       try {
         const response = await fetch(webhookURL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(message),
+          body: JSON.stringify({ embeds: [embed] }),
         });
 
         if (response.ok) {
-          alert("Anmodning sendt med succes!");
-          document.getElementById("requestForm").reset();
+          alert("Anmodning sendt!");
         } else {
-          alert("Kunne ikke sende anmodningen. Prøv venligst igen.");
+          alert("Kunne ikke sende anmodningen. Prøv igen senere.");
         }
       } catch (error) {
         console.error("Fejl:", error);
         alert("En fejl opstod. Tjek konsollen for detaljer.");
       }
+    }
+
+    // Indsendelse af flyformular
+    forms.flight.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const embed = {
+        title: "Flyreservation",
+        color: 5814783,
+        fields: [
+          { name: "👤 Navn", value: document.getElementById("flightName").value },
+          { name: "📍 Fra", value: document.getElementById("fromAirport").value, inline: true },
+          { name: "📍 Til", value: document.getElementById("toAirport").value, inline: true },
+          { name: "📅 Dato", value: document.getElementById("flightDate").value, inline: true },
+          { name: "⏰ Tid", value: document.getElementById("flightTime").value, inline: true },
+          { name: "👥 Passagerer", value: document.getElementById("flightPassengers").value, inline: true },
+          { name: "📞 Telefon", value: document.getElementById("flightPhone").value, inline: true },
+          { name: "💬 Discord", value: document.getElementById("flightDiscord").value, inline: true },
+        ],
+      };
+      sendToDiscord(embed);
+      forms.flight.reset();
+    });
+
+    // Indsendelse af bilformular
+    forms.car.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const embed = {
+        title: "Bilreservation",
+        color: 5814783,
+        fields: [
+          { name: "👤 Navn", value: document.getElementById("carName").value },
+          { name: "📍 Afhentning", value: document.getElementById("carPickup").value, inline: true },
+          { name: "📍 Aflevering", value: document.getElementById("carDropoff").value, inline: true },
+          { name: "🚗 Biltype", value: document.getElementById("carType").value, inline: true },
+          { name: "👥 Personer", value: document.getElementById("carPassengers").value, inline: true },
+          { name: "📅 Dato", value: document.getElementById("carDate").value, inline: true },
+          { name: "⏰ Tid", value: document.getElementById("carTime").value, inline: true },
+          { name: "📞 Telefon", value: document.getElementById("carPhone").value, inline: true },
+          { name: "💬 Discord", value: document.getElementById("carDiscord").value, inline: true },
+        ],
+      };
+      sendToDiscord(embed);
+      forms.car.reset();
+    });
+
+    // Indsendelse af helikopterformular
+    forms.helicopter.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const embed = {
+        title: "Helikopterreservation",
+        color: 5814783,
+        fields: [
+          { name: "👤 Navn", value: document.getElementById("helicopterName").value },
+          { name: "📍 Afhentning", value: document.getElementById("helicopterPickup").value, inline: true },
+          { name: "📍 Aflevering", value: document.getElementById("helicopterDropoff").value, inline: true },
+          { name: "👥 Personer", value: document.getElementById("helicopterPassengers").value, inline: true },
+          { name: "📅 Dato", value: document.getElementById("helicopterDate").value, inline: true },
+          { name: "⏰ Tid", value: document.getElementById("helicopterTime").value, inline: true },
+          { name: "📞 Telefon", value: document.getElementById("helicopterPhone").value, inline: true },
+          { name: "💬 Discord", value: document.getElementById("helicopterDiscord").value, inline: true },
+        ],
+      };
+      sendToDiscord(embed);
+      forms.helicopter.reset();
     });
   </script>
 </body>
