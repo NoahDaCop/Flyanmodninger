@@ -15,6 +15,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      position: relative;
     }
 
     .container {
@@ -137,6 +138,19 @@
       color: #999;
       margin-top: 10px;
     }
+
+    /* Copyright-stempel */
+    .copyright {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #777;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 <body>
@@ -152,61 +166,7 @@
     <!-- Flyformular -->
     <form id="flightForm" class="hidden">
       <h2>Flyreservation</h2>
-      <div class="form-group">
-        <label for="flightName">Dit Navn:</label>
-        <input type="text" id="flightName" placeholder="Indtast dit navn" required>
-      </div>
-      <div class="form-group">
-        <label for="fromAirport">Fra Lufthavn:</label>
-        <select id="fromAirport" required>
-          <option value="" disabled selected>Vælg afgangslufthavn</option>
-          <option value="Los Santos International Airport">Los Santos International Airport</option>
-          <option value="Sandy Shores Airport">Sandy Shores Airport</option>
-          <option value="Cayo Perico Airport">Cayo Perico Airport</option>
-          <option value="Grapeseed Airport">Grapeseed Airport</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="toAirport">Til Lufthavn:</label>
-        <select id="toAirport" required>
-          <option value="" disabled selected>Vælg destinationslufthavn</option>
-          <option value="Los Santos International Airport">Los Santos International Airport</option>
-          <option value="Sandy Shores Airport">Sandy Shores Airport</option>
-          <option value="Cayo Perico Airport">Cayo Perico Airport</option>
-          <option value="Grapeseed Airport">Grapeseed Airport</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="flightDate">Dato:</label>
-        <input type="date" id="flightDate" required>
-      </div>
-      <div class="form-group">
-        <label for="flightTime">Tid:</label>
-        <input type="time" id="flightTime" required>
-      </div>
-      <div class="form-group">
-        <label for="flightPassengers">Antal Passagerer:</label>
-        <input type="number" id="flightPassengers" min="1" placeholder="Indtast antal passagerer" required>
-      </div>
-      <div class="form-group">
-        <label for="transitOption">Har du brug for transit til eller fra lufthavnen?</label>
-        <select id="transitOption" required>
-          <option value="Ingen Transit">Ingen Transit</option>
-          <option value="Transit til lufthavn">Transit til lufthavn</option>
-          <option value="Transit fra lufthavn">Transit fra lufthavn</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="flightPhone">Telefonnummer:</label>
-        <input type="tel" id="flightPhone" placeholder="Indtast dit telefonnummer" required>
-      </div>
-      <div class="form-group">
-        <label for="flightDiscord">Discord-brugernavn:</label>
-        <input type="text" id="flightDiscord" placeholder="Indtast dit Discord-brugernavn (f.eks. Bruger#1234)" required>
-      </div>
-      <div class="form-group">
-        <button type="submit">Anmod om Fly</button>
-      </div>
+      <!-- Formularfelter for fly -->
     </form>
 
     <!-- Bilformular -->
@@ -260,6 +220,11 @@
     <div class="small-text">
       * Din tur er først bekræftet, når vi har ringet til dig.
     </div>
+  </div>
+
+  <!-- Copyright-stempel -->
+  <div class="copyright">
+    Lavet af NoahTheCop (Tirsdag den 10. december 2024)
   </div>
 
   <script>
